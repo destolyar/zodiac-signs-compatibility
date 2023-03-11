@@ -29,24 +29,40 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.container}>
-        <h1 className={styles.pageTitle}>Will it be a match <span>☀🌟</span>?</h1>
+        <h1 className={styles.pageTitle}>Will it be a match 🌟?</h1>
         <h2 className={styles.subtitle}>Check your zodiac compatibility</h2>
         <p className={styles.description}>Looking for the perfect match? Our zodiac partnership compatibility test uses the power of astrology to help you. Fiscover which zodiac signs are most compatible with yours. Whether you're looking for a romantic partner or just a new friend, our comparison provides valuable insights and advantages to help you make the most of your relationships.</p>
+        
+        <h3 className={styles.sliderTitle}>Your sign</h3>
 
-        <Swiper slidesPerView={3} centeredSlides spaceBetween={50} loop slideToClickedSlide 
-        breakpoints={sliderBreakpoints}>
+        <Swiper
+          slidesPerView={3}
+          centeredSlides
+          spaceBetween={50}
+          loop
+          slideToClickedSlide
+          breakpoints={sliderBreakpoints}>
           {signs.map(sign =>
-            <SwiperSlide>
-              <Sign key={sign.name} signInfo={sign} />
+            <SwiperSlide key={sign.name}>
+              <Sign signInfo={sign} />
             </SwiperSlide>)}
         </Swiper>
 
-        <h2 className={styles.plus}>+</h2>
-        <h2 className={styles.subtitle}>Their sign</h2>
+        <span className={styles.plus}>+</span>
+        <h3 className={styles.sliderTitle}>Their sign</h3>
 
-        <section className={styles.slider}>
-          {signs.map(sign => <Sign key={sign.name} signInfo={sign} />)}
-        </section>
+        <Swiper
+          slidesPerView={3}
+          centeredSlides
+          spaceBetween={50}
+          loop
+          slideToClickedSlide
+          breakpoints={sliderBreakpoints}>
+          {signs.map(sign =>
+            <SwiperSlide key={sign.name}>
+              <Sign signInfo={sign} />
+            </SwiperSlide>)}
+        </Swiper>
 
         <button className={styles.submit}>Check your compatibility✨</button>
       </main>
