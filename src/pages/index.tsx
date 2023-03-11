@@ -3,11 +3,23 @@ import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.scss'
 import signs from '../pairs-data/signs.json'
 import { Sign } from '@/components/Sign'
-import { Carousel } from '@trendyol-js/react-carousel'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/scss';
+
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  const sliderBreakpoints = {
+    768: {
+      slidesPerView: 5
+    },
+    1200: {
+      slidesPerView: 7
+    }
+  }
+
+
   return (
     <>
       <Head>
@@ -21,9 +33,13 @@ export default function Home() {
         <h2 className={styles.subtitle}>Check your zodiac compatibility</h2>
         <p className={styles.description}>Looking for the perfect match? Our zodiac partnership compatibility test uses the power of astrology to help you. Fiscover which zodiac signs are most compatible with yours. Whether you're looking for a romantic partner or just a new friend, our comparison provides valuable insights and advantages to help you make the most of your relationships.</p>
 
-        <Carousel show={5} slide={1} infinite swiping useArrowKeys leftArrow={null} rightArrow={null}>
-          {signs.map(sign => <Sign key={sign.name} signInfo={sign} />)}
-        </Carousel>
+        <Swiper slidesPerView={3} centeredSlides spaceBetween={50} loop slideToClickedSlide 
+        breakpoints={sliderBreakpoints}>
+          {signs.map(sign =>
+            <SwiperSlide>
+              <Sign key={sign.name} signInfo={sign} />
+            </SwiperSlide>)}
+        </Swiper>
 
         <h2 className={styles.plus}>+</h2>
         <h2 className={styles.subtitle}>Their sign</h2>
