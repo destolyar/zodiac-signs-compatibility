@@ -1,0 +1,64 @@
+@import "../styles/mixins/utills.scss";
+
+.container {
+  padding: 40px 80px;
+
+  @include laptop {
+    padding: 30px 60px;
+  }
+
+  @include tablets {
+    padding: 20px 40px;
+  }
+
+  @include phones {
+    padding: 10px 20px;
+  }
+}
+
+.pageTitle {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.plus {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 3rem;
+}
+
+.description {
+  margin: 0 auto;
+  max-width: 800px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.slider {
+  display: flex;
+  justify-content: space-between;
+}
+
+.submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  margin: 0 auto;
+  margin-top: 40px;
+  margin-left: auto;
+  border: 0;
+  transition: .3s;
+  color: $text-third-color;
+  background-color: $button-color;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.04);
+  }
+}
