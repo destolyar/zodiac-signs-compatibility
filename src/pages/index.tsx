@@ -1,17 +1,32 @@
-import Head from 'next/head'
-import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.scss'
 import signs from '../pairs-data/signs.json'
+import Head from 'next/head'
+import Link from 'next/link'
 import { Sign } from '@/components/Sign'
+import { useState, memo, useEffect } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
+
+import styles from '@/styles/Home.module.scss'
 import 'swiper/scss';
 import 'swiper/scss/navigation';
-import React, { useState } from 'react'
-
+import { useRouter } from 'next/router'
+import { Loader } from '@/components/Loader'
 
 export default function Home() {
   const [firstSliderIndex, setFirstSliderIndexIndex] = useState(0);
   const [secondSliderIndex, setSecondSliderIndexIndex] = useState(0);
+  const [loaderIsVisible, setLoaderIsVisible] = useState(false)
+
+  const MemoizedSign = memo(Sign);
+  const currentPair = `${signs[firstSliderIndex].name}+${signs[secondSliderIndex].name}`
+
+  const router = useRouter()
+
+  const handleSubmit = () => {
+    setLoaderIsVisible(true)
+    setTimeout(() => {
+      router.push(`/compatibility/${currentPair}`)
+    }, 3000)
+  }
 
   const sliderBreakpoints = {
     768: {
@@ -22,8 +37,6 @@ export default function Home() {
     }
   }
 
-  const MemoizedSign = React.memo(Sign);
-
   return (
     <>
       <Head>
@@ -32,47 +45,47 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <h1 className={styles.pageTitle}>Will it be a match 🌟?</h1>
       <main className={styles.container}>
-        <h1 className={styles.pageTitle}>Will it be a match 🌟?</h1>
-        <h2 className={styles.subtitle}>Check your zodiac compatibility</h2>
-        <p className={styles.description}>Looking for the perfect match? Our zodiac partnership compatibility test uses the power of astrology to help you. Fiscover which zodiac signs are most compatible with yours. Whether you're looking for a romantic partner or just a new friend, our comparison provides valuable insights and advantages to help you make the most of your relationships.</p>
+        {loaderIsVisible ? <Loader/> : <>
+          <h2 className={styles.subtitle}>Check your zodiac compatibility</h2>
+          <p className={styles.description}>Looking for the perfect match? Our zodiac partnership compatibility test uses the power of astrology to help you. Fiscover which zodiac signs are most compatible with yours. Whether you're looking for a romantic partner or just a new friend, our comparison provides valuable insights and advantages to help you make the most of your relationships.</p>
+          <h3 className={styles.sliderTitle}>Your sign</h3>
+          <Swiper
+            onSlideChange={(swiper) => setFirstSliderIndexIndex(swiper.realIndex)}
+            initialSlide={firstSliderIndex}
+            slidesPerView={3}
+            centeredSlides
+            spaceBetween={20}
+            loop
+            slideToClickedSlide
+            breakpoints={sliderBreakpoints}>
+            {signs.map(sign =>
+              <SwiperSlide key={sign.name}>
+                <MemoizedSign signInfo={sign} />
+              </SwiperSlide>)}
+          </Swiper>
 
-        <h3 className={styles.sliderTitle}>Your sign</h3>
-        <Swiper
-          onSlideChange={(swiper) => setFirstSliderIndexIndex(swiper.realIndex)}
-          initialSlide={firstSliderIndex}
-          slidesPerView={3}
-          centeredSlides
-          spaceBetween={20}
-          loop
-          slideToClickedSlide
-          breakpoints={sliderBreakpoints}>
-          {signs.map(sign =>
-            <SwiperSlide key={sign.name}>
-              <MemoizedSign signInfo={sign} />
-            </SwiperSlide>)}
-        </Swiper>
+          <span className={styles.plus}>+</span>
+          <h3 className={styles.sliderTitle}>Their sign</h3>
 
-        <span className={styles.plus}>+</span>
-        <h3 className={styles.sliderTitle}>Their sign</h3>
+          <Swiper
+            onSlideChange={(swiper) => setSecondSliderIndexIndex(swiper.realIndex)}
+            initialSlide={secondSliderIndex}
+            slidesPerView={3}
+            centeredSlides
+            spaceBetween={20}
+            loop
+            slideToClickedSlide
+            breakpoints={sliderBreakpoints}>
+            {signs.map(sign =>
+              <SwiperSlide key={sign.name}>
+                <MemoizedSign signInfo={sign} />
+              </SwiperSlide>)}
+          </Swiper>
 
-        <Swiper
-          onSlideChange={(swiper) => setSecondSliderIndexIndex(swiper.realIndex)}
-          initialSlide={secondSliderIndex}
-          slidesPerView={3}
-          centeredSlides
-          spaceBetween={20}
-          loop
-          slideToClickedSlide
-          breakpoints={sliderBreakpoints}>
-          {signs.map(sign =>
-            <SwiperSlide key={sign.name}>
-              <MemoizedSign signInfo={sign} />
-            </SwiperSlide>)}
-        </Swiper>
-
-        <button className={styles.submit}>{signs[firstSliderIndex].name} + {signs[secondSliderIndex].name}</button>
-        {/* <button className={styles.submit}>Check your compatibility✨</button> */}
+          <button className={styles.submit} onClick={handleSubmit}>Check your compatibility✨</button>
+        </>}
       </main>
     </>
   )

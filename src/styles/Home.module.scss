@@ -1,19 +1,8 @@
 @import "../styles/mixins/utills.scss";
 
 .container {
-  padding: 40px 80px;
-
-  @include laptop {
-    padding: 30px 60px;
-  }
-
-  @include tablets {
-    padding: 20px 40px;
-  }
-
-  @include phones {
-    padding: 20px;
-  }
+  position: relative;
+  flex-grow: 1;
 }
 
 .pageTitle {
@@ -76,6 +65,7 @@
 }
 
 .submit {
+  width: fit-content;
   display: flex;
   align-items: center;
   justify-content: center;
