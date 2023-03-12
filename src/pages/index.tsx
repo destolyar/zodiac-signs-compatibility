@@ -23,6 +23,7 @@ export default function Home() {
 
   const handleSubmit = useCallback(() => {
     setIsLoaderVisible(true)
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [])
 
   useEffect(() => {
