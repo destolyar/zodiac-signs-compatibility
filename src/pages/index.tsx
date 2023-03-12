@@ -85,9 +85,10 @@ export default function Home() {
             spaceBetween={20}
             loop
             slideToClickedSlide
-            breakpoints={sliderBreakpoints}>
+            breakpoints={sliderBreakpoints}
+            >
             {signs.map(sign =>
-              <SwiperSlide key={sign.name}>
+              <SwiperSlide key={sign.dates}>
                 <MemoizedSign signInfo={sign} />
               </SwiperSlide>)}
           </Swiper>
