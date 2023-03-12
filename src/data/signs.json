@@ -1,62 +1,62 @@
 [
   {
     "name": "Aries",
-    "imagePath": "./signs/aries.png",
+    "imagePath": "/signs/aries.png",
     "dates": "Mar 21 - Apr 19"
   },
   {
     "name": "Taurus",
-    "imagePath": "./signs/taurus.png",
+    "imagePath": "/signs/taurus.png",
     "dates": "Apr 20 - May 20"
   },
   {
     "name": "Gemini",
-    "imagePath": "./signs/gemini.png",
+    "imagePath": "/signs/gemini.png",
     "dates": "May 21 - Jun 20"
   },
   {
     "name": "Cancer",
-    "imagePath": "./signs/cancer.png",
+    "imagePath": "/signs/cancer.png",
     "dates": "Jun 21 - Jul 22"
   },
   {
     "name": "Leo",
-    "imagePath": "./signs/leo.png",
+    "imagePath": "/signs/leo.png",
     "dates": "Jul 23 - Aug 22"
   },
   {
     "name": "Virgo",
-    "imagePath": "./signs/virgo.png",
+    "imagePath": "/signs/virgo.png",
     "dates": "Aug 23 - Sep 22"
   },
   {
     "name": "Libra",
-    "imagePath": "./signs/libra.png",
+    "imagePath": "/signs/libra.png",
     "dates": "Sep 23 - Oct 22"
   },
   {
     "name": "Scorpio",
-    "imagePath": "./signs/scorpio.png",
+    "imagePath": "/signs/scorpio.png",
     "dates": "Oct 23 - Nov 21"
   },
   {
     "name": "Sagittarius",
-    "imagePath": "./signs/sagittarius.png",
+    "imagePath": "/signs/sagittarius.png",
     "dates": "Nov 22 - Dec 21"
   },
   {
     "name": "Capricorn",
-    "imagePath": "./signs/capricorn.png",
+    "imagePath": "/signs/capricorn.png",
     "dates": "Dec 22 - Jan 19"
   },
   {
     "name": "Aquarius",
-    "imagePath": "./signs/aquarius.png",
+    "imagePath": "/signs/aquarius.png",
     "dates": "Jan 20 - Feb 18"
   },
   {
     "name": "Pisces",
-    "imagePath": "./signs/pisces.png",
+    "imagePath": "/signs/pisces.png",
     "dates": "Feb 19 - Mar 20"
   }
 ]
