@@ -1,13 +1,7 @@
 @import "./mixins/utills.scss";
 
-.container {
-  position: relative;
-  flex-grow: 1;
-}
-
 .pageTitle {
   text-align: center;
-  margin-bottom: 5px;
   font-size: 2rem;
 
   @include laptop {
@@ -16,8 +10,8 @@
 }
 
 .subtitle {
-  text-align: center;
-  margin-bottom: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   font-size: 1.5rem;
 
   @include laptop {
@@ -25,7 +19,11 @@
   }
 }
 
-.sliderTitle {
+.description {
+  margin-bottom: 30px;
+}
+
+.comment {
   text-align: center;
   margin-bottom: 30px;
   font-size: 1.2rem;
@@ -35,14 +33,16 @@
   }
 }
 
-.sunIcon {
-  color: yellow;
+.signs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
 .plus {
-  display: block;
-  margin: 0 auto;
-  margin-top: 30px;
+  margin: 0 30px;
   text-align: center;
   font-size: 3rem;
 
@@ -51,28 +51,15 @@
   }
 }
 
-.description {
-  margin: 0 auto;
-  max-width: 800px;
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.slider {
-  overflow-y: scroll;
-  display: flex;
-  justify-content: space-between;
-}
-
-.submit {
-  width: fit-content;
+.share {
+  width: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.2rem;
   padding: 10px;
   margin: 0 auto;
-  margin-top: 40px;
+  margin-top: 30px;
   margin-left: auto;
   border: 0;
   transition: .3s;
@@ -87,4 +74,10 @@
     cursor: pointer;
     transform: scale(1.04);
   }
+}
+
+.secondaryScore {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 40px;
 }

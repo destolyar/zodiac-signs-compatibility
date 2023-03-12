@@ -3,6 +3,8 @@ import Head from 'next/head'
 import signs from '@/data/signs.json'
 import pairs from '@/data/zodiac-pairs.json'
 import { Sign } from '@/components/Sign'
+import { Progressbar } from '@/components/Progressbar'
+import styles from '@/styles/Compatibility.module.scss'
 
 
 export default function Home({ firstSign, secondSign }:
@@ -18,13 +20,31 @@ export default function Home({ firstSign, secondSign }:
       <Head>
         <title>Compatibility result!</title>
       </Head>
-      <h1>Is it a match?</h1>
-      <main>
-        generated page for {firstSign.name} + {secondSign.name}
-        
-        <Sign signInfo={firstSign}/>
-        <Sign signInfo={secondSign}/>
-      </main>
+      <h1 className={styles.pageTitle}>Is it a match?</h1>
+      {pair && <main>
+        <section className={styles.signs}>
+          <Sign signInfo={firstSign} />
+          <span className={styles.plus}>+</span>
+          <Sign signInfo={secondSign} />
+        </section>
+        <section>
+          <h2 className={styles.comment}>What an astounding match!</h2>
+          <Progressbar isOverallScore percent={pair.overallscore}/>
+        </section>
+
+        <section>
+          <h2 className={styles.subtitle}>Overall</h2>
+          <p className={styles.description}>{pair.description}</p>
+        </section>
+
+        <section className={styles.secondaryScore}>
+          <Progressbar title={"Career"} percent={pair.careerscore}/>
+          <Progressbar title={"Sex life"} percent={pair.intimatescore}/>
+          <Progressbar title={"Mindset"} percent={pair.mindsetscore}/>
+          <Progressbar title={"Friendship"} percent={pair.interestsscore}/>
+        </section>
+        <button className={styles.share}>Share results✨</button>
+      </main>}
     </>
   )
 }
