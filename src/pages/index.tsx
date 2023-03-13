@@ -16,7 +16,6 @@ export default function Home() {
   const [secondSliderIndex, setSecondSliderIndex] = useState(0);
   const [isLoaderVisible, setIsLoaderVisible] = useState(false)
    
-  const MemoizedSign = memo(Sign);
   const currentPair = useMemo(() => `${signs[firstSliderIndex].name}+${signs[secondSliderIndex].name}`, [firstSliderIndex, secondSliderIndex])
 
   const router = useRouter()
@@ -67,7 +66,7 @@ export default function Home() {
             breakpoints={sliderBreakpoints}>
             {signs.map(sign =>
               <SwiperSlide key={sign.name}>
-                <MemoizedSign signInfo={sign} />
+                <Sign signInfo={sign} />
               </SwiperSlide>)}
           </Swiper>
 
@@ -86,7 +85,7 @@ export default function Home() {
             >
             {signs.map(sign =>
               <SwiperSlide key={sign.dates}>
-                <MemoizedSign signInfo={sign} />
+                <Sign signInfo={sign} />
               </SwiperSlide>)}
           </Swiper>
 
