@@ -1,7 +1,7 @@
 import signs from '@/data/signs.json'
 import Head from 'next/head'
 import { Sign } from '@/components/Sign'
-import { useState, memo, useCallback, useMemo, useEffect } from 'react'
+import { useState, useCallback, useMemo, useEffect } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useRouter } from 'next/router'
 import { Loader } from '@/components/Loader'
@@ -53,7 +53,6 @@ export default function Home() {
       <main className={styles.container}>
         {isLoaderVisible ? <Loader /> : signs && <>
           <h2 className={styles.subtitle}>Check your zodiac compatibility</h2>
-          <p className={styles.description}>{DESCRIPTION_TEXT}</p>
           <h3 className={styles.sliderTitle}>Your sign</h3>
           <Swiper
             onSlideChange={(swiper) => setFirstSliderIndex(swiper.realIndex)}
@@ -88,6 +87,8 @@ export default function Home() {
                 <Sign signInfo={sign} />
               </SwiperSlide>)}
           </Swiper>
+
+          <p className={styles.description}>{DESCRIPTION_TEXT}</p>
 
           <button className={styles.submit} onClick={handleSubmit}>Check your compatibility✨</button>
         </>}
