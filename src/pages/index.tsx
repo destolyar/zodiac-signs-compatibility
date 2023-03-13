@@ -64,7 +64,6 @@ export default function Home() {
             spaceBetween={20}
             loop
             slideToClickedSlide
-            virtual
             breakpoints={sliderBreakpoints}>
             {signs.map(sign =>
               <SwiperSlide key={sign.name}>
