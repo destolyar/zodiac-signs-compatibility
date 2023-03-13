@@ -52,7 +52,7 @@ export default function Home() {
       </Head>
       <h1 className={styles.pageTitle}>Will it be a match 🌟?</h1>
       <main className={styles.container}>
-        {isLoaderVisible ? <Loader /> : <>
+        {isLoaderVisible ? <Loader /> : signs && <>
           <h2 className={styles.subtitle}>Check your zodiac compatibility</h2>
           <p className={styles.description}>{DESCRIPTION_TEXT}</p>
           <h3 className={styles.sliderTitle}>Your sign</h3>
