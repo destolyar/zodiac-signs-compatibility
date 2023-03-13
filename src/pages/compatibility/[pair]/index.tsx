@@ -29,7 +29,7 @@ export default function Home({ firstSign, secondSign }:
           <Sign signInfo={secondSign} />
         </section>
         <section>
-          <h2 className={styles.comment}>What an astounding match!</h2>
+          <h2 className={styles.comment}>{pair.overallscore >= 70 ? "What an astounding match!" : "It's an ok match"}</h2>
           <Progressbar isOverallScore percent={pair.overallscore}/>
         </section>
 
