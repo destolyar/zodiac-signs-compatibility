@@ -5,6 +5,7 @@ import pairs from '@/data/zodiac-pairs.json'
 import { Sign } from '@/components/Sign'
 import { Progressbar } from '@/components/Progressbar'
 import styles from '@/styles/Compatibility.module.scss'
+import Link from 'next/link'
 
 
 export default function Home({ firstSign, secondSign }:
@@ -21,7 +22,7 @@ export default function Home({ firstSign, secondSign }:
         <title>Compatibility result!</title>
       </Head>
       <h1 className={styles.pageTitle}>Is it a match?</h1>
-      {pair && <main>
+      {pair && <main className={styles.container}>
         <section className={styles.signs}>
           <Sign signInfo={firstSign} />
           <span className={styles.plus}>+</span>
@@ -32,18 +33,20 @@ export default function Home({ firstSign, secondSign }:
           <Progressbar isOverallScore percent={pair.overallscore}/>
         </section>
 
-        <section>
-          <h2 className={styles.subtitle}>Overall</h2>
-          <p className={styles.description}>{pair.description}</p>
-        </section>
-
         <section className={styles.secondaryScore}>
           <Progressbar title={"Career"} percent={pair.careerscore}/>
           <Progressbar title={"Sex life"} percent={pair.intimatescore}/>
           <Progressbar title={"Mindset"} percent={pair.mindsetscore}/>
           <Progressbar title={"Friendship"} percent={pair.interestsscore}/>
         </section>
+
+        <section>
+          <h2 className={styles.subtitle}>Overall</h2>
+          <p className={styles.description}>{pair.description}</p>
+        </section>
+
         <button className={styles.share}>Share results✨</button>
+        <Link href="/" className={styles.redirect}>Start over</Link>
       </main>}
     </>
   )

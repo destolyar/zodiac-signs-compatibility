@@ -37,11 +37,8 @@ export default function Home() {
   }, [isLoaderVisible, router, currentPair])
 
   const sliderBreakpoints = {
-    768: {
+    1640: {
       slidesPerView: 5
-    },
-    1200: {
-      slidesPerView: 7
     }
   }
 
