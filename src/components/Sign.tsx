@@ -1,4 +1,3 @@
-import Image from "next/image"
 import styles from "../styles/Sign.module.scss"
 
 export const Sign = ({ signInfo }: { signInfo: SignInfo }) => {
@@ -6,7 +5,7 @@ export const Sign = ({ signInfo }: { signInfo: SignInfo }) => {
 
   return (
     <div className={styles.container}>
-      <Image className={styles.image} src={imagePath} alt={name} width={128} height={128}/>
+      <img className={styles.image} src={imagePath} alt={name}/>
       <h3 className={styles.title}>{name}</h3>
       <p className={styles.dates}>{dates}</p>
     </div>
