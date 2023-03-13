@@ -10,21 +10,15 @@
 .image {
   width: 128px;
   height: 128px;
-  min-width: 128px;
-  min-height: 128px;
 
   @include laptop {
     width: 90px;
     height: 90px;
-    min-width: 90px;
-    min-height: 90px;
   }
 
   @include phones {
     width: 64px;
     height: 64px;
-    min-width: 64px;
-    min-height: 64px;
   }
 }
 
