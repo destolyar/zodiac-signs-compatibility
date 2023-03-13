@@ -88,9 +88,9 @@ export default function Home() {
               </SwiperSlide>)}
           </Swiper>
 
-          <p className={styles.description}>{DESCRIPTION_TEXT}</p>
-
           <button className={styles.submit} onClick={handleSubmit}>Check your compatibility✨</button>
+
+          <p className={styles.description}>{DESCRIPTION_TEXT}</p>
         </>}
       </main>
     </>
