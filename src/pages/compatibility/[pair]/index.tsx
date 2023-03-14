@@ -1,15 +1,15 @@
 import type { GetServerSidePropsContext } from 'next'
-import Head from 'next/head'
-import signs from '@/data/signs.json'
-import pairs from '@/data/zodiac-pairs.json'
 import { Sign } from '@/components/Sign'
 import { Progressbar } from '@/components/Progressbar'
 import { InlineShareButtons } from 'sharethis-reactjs';
-import styles from '@/styles/Compatibility.module.scss'
-import Link from 'next/link'
 import { useCallback } from 'react'
+import Head from 'next/head'
+import signs from '@/data/signs.json'
+import pairs from '@/data/zodiac-pairs.json'
 import ReactGA from 'react-ga';
+import Link from 'next/link'
 
+import styles from '@/styles/Compatibility.module.scss'
 
 
 export default function Home({ firstSign, secondSign }:

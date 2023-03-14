@@ -1,10 +1,10 @@
-import signs from '@/data/signs.json'
-import Head from 'next/head'
 import { Sign } from '@/components/Sign'
-import { useState, useCallback, useMemo, useEffect, useRef } from 'react'
+import { useState, useCallback, useMemo, useEffect } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useRouter } from 'next/router'
 import { Loader } from '@/components/Loader'
+import signs from '@/data/signs.json'
+import Head from 'next/head'
 import ReactGA from 'react-ga';
 
 import styles from '@/styles/Home.module.scss'
