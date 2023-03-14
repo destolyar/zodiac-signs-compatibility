@@ -4,8 +4,12 @@ import signs from '@/data/signs.json'
 import pairs from '@/data/zodiac-pairs.json'
 import { Sign } from '@/components/Sign'
 import { Progressbar } from '@/components/Progressbar'
+import { InlineShareButtons } from 'sharethis-reactjs';
 import styles from '@/styles/Compatibility.module.scss'
 import Link from 'next/link'
+import { useCallback } from 'react'
+import ReactGA from 'react-ga';
+
 
 
 export default function Home({ firstSign, secondSign }:
@@ -15,6 +19,22 @@ export default function Home({ firstSign, secondSign }:
     pair.possibleCombinations.includes(firstSign.name) &&
     pair.possibleCombinations.includes(secondSign.name)
   )
+
+  const handleShare = useCallback(() => {
+    ReactGA.event({
+      category: "Astro compatibility",
+      action: "Share compatibility"
+    })
+  }, [])
+
+  const handleStartOver = useCallback(() => {
+    ReactGA.event({
+      category: "Astro compatibility",
+      action: "Try astro compatibility button clicked"
+    })
+  }, [])
+
+  const SHARE_DESCRIPTION = "Check my zodiac compatibility results!"
 
   return (
     <>
@@ -30,14 +50,14 @@ export default function Home({ firstSign, secondSign }:
         </section>
         <section>
           <h2 className={styles.comment}>{pair.overallscore >= 70 ? "What an astounding match!" : "It's an ok match"}</h2>
-          <Progressbar isOverallScore percent={pair.overallscore}/>
+          <Progressbar isOverallScore percent={pair.overallscore} />
         </section>
 
         <section className={styles.secondaryScore}>
-          <Progressbar title={"Career"} percent={pair.careerscore}/>
-          <Progressbar title={"Sex life"} percent={pair.intimatescore}/>
-          <Progressbar title={"Mindset"} percent={pair.mindsetscore}/>
-          <Progressbar title={"Friendship"} percent={pair.interestsscore}/>
+          <Progressbar title={"Career"} percent={pair.careerscore} />
+          <Progressbar title={"Sex life"} percent={pair.intimatescore} />
+          <Progressbar title={"Mindset"} percent={pair.mindsetscore} />
+          <Progressbar title={"Friendship"} percent={pair.interestsscore} />
         </section>
 
         <section>
@@ -45,8 +65,32 @@ export default function Home({ firstSign, secondSign }:
           <p className={styles.description}>{pair.description}</p>
         </section>
 
-        <button className={styles.share}>Share results✨</button>
-        <Link href="/" className={styles.redirect}>Start over</Link>
+        <InlineShareButtons
+          config={{
+            alignment: 'center',
+            color: 'social',
+            enabled: true,
+            font_size: 16,
+            labels: 'cta',
+            language: 'en',
+            networks: [
+              'pinterest',
+              'whatsapp',
+              'facebook',
+              'twitter'
+            ],
+            padding: 12,
+            radius: 4,          
+            show_total: false,
+            size: 40,
+            image: "https://bit.ly/2CMhCMC",
+            title: SHARE_DESCRIPTION,
+            message: SHARE_DESCRIPTION,
+            url: "https://zodiac-signs-compatibility.vercel.app/"
+          }}
+        />
+        <button className={styles.share} onClick={handleShare}>Share results✨</button>
+        <Link href="/" className={styles.redirect} onClick={handleStartOver}>Start over</Link>
       </main>}
     </>
   )

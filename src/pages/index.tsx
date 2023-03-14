@@ -1,10 +1,11 @@
 import signs from '@/data/signs.json'
 import Head from 'next/head'
 import { Sign } from '@/components/Sign'
-import { useState, useCallback, useMemo, useEffect } from 'react'
+import { useState, useCallback, useMemo, useEffect, useRef } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useRouter } from 'next/router'
 import { Loader } from '@/components/Loader'
+import ReactGA from 'react-ga';
 
 import styles from '@/styles/Home.module.scss'
 
@@ -15,25 +16,46 @@ export default function Home() {
   const [firstSliderIndex, setFirstSliderIndex] = useState(0);
   const [secondSliderIndex, setSecondSliderIndex] = useState(0);
   const [isLoaderVisible, setIsLoaderVisible] = useState(false)
-   
+
   const currentPair = useMemo(() => `${signs[firstSliderIndex].name}+${signs[secondSliderIndex].name}`, [firstSliderIndex, secondSliderIndex])
 
   const router = useRouter()
 
   const handleSubmit = useCallback(() => {
     setIsLoaderVisible(true)
+    ReactGA.event({
+      category: "Astro compatibility",
+      action: "Check compatibility button clicked"
+    })    
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [])
+
+  // useEffect(() => {
+  //   const urlParams = new URLSearchParams(window.location.search);
+  //   const first_sign = urlParams.get('first_sign')
+  //   const secondSign = urlParams.get('second_sign')
+
+  //   const firstSignIndex = signs.findIndex(sign => sign.name.toLowerCase() === first_sign?.toLowerCase())
+  //   const secondSignIndex = signs.findIndex(sign => sign.name.toLowerCase() === secondSign?.toLowerCase())
+  //   const bothSignsExists = firstSignIndex && secondSignIndex
+
+  //   if (bothSignsExists !== undefined) {
+  //     console.log("All should work")
+  //     setFirstSliderIndex(firstSignIndex)
+  //     setSecondSliderIndex(secondSignIndex)
+  //   }
+  // }, [])
 
   useEffect(() => {
     if (isLoaderVisible) {
       const timerId = setTimeout(() => {
         router.push(`/compatibility/${currentPair}`)
       }, LOADER_TIMEOUT)
-      
+
       return () => clearTimeout(timerId)
     }
   }, [isLoaderVisible, router, currentPair])
+
 
   const sliderBreakpoints = {
     1640: {
@@ -81,7 +103,7 @@ export default function Home() {
             loop
             slideToClickedSlide
             breakpoints={sliderBreakpoints}
-            >
+          >
             {signs.map(sign =>
               <SwiperSlide key={sign.dates}>
                 <Sign signInfo={sign} />

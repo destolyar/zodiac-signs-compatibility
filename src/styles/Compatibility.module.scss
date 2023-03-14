@@ -67,7 +67,7 @@
 
 .share, .redirect {
   box-sizing: border-box;
-  width: 200px;
+  width: 270px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -95,6 +95,7 @@
 
 .redirect {
   margin-top: 20px;
+  color: $text-color;
   background-color: transparent;
 }
 
