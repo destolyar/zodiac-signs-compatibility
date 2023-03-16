@@ -15,10 +15,12 @@ import styles from '@/styles/Compatibility.module.scss'
 export default function Home({ firstSign, secondSign }:
   { firstSign: SignInterface, secondSign: SignInterface }) {
   const [isShareButtonsVisible, setIsShareButtonsVisible] = useState(false)
+  const firstForCheck = `${firstSign.name}-${secondSign.name}`.toLowerCase()
+  const secondPairForCheck = `${secondSign.name}-${firstSign.name}`.toLowerCase()
 
   const pair = pairs.find(pair =>
-    pair.possibleCombinations.includes(firstSign.name) &&
-    pair.possibleCombinations.includes(secondSign.name)
+    pair.possibleCombinations.split(" ").join("").toLowerCase() === firstForCheck ||
+    pair.possibleCombinations.split(" ").join("").toLowerCase() === secondPairForCheck
   )
 
   const handleShare = useCallback(() => {
