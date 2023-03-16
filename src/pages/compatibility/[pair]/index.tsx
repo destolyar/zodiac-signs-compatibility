@@ -94,7 +94,7 @@ export default function Home({ firstSign, secondSign }:
             }}
           />
         </section>
-        <button className={styles.share} onClick={handleShare}>Share results✨</button>
+        <button className={styles.share} onClick={handleShare}>Share results</button>
         <Link href="/" className={styles.redirect} onClick={handleStartOver}>Start over</Link>
       </main>}
     </>
