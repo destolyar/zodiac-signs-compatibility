@@ -17,6 +17,9 @@
 .pageTitle {
   text-align: center;
   font-size: 2rem;
+  font-family: HelveticaNeueLTProBoldExtended;
+  text-shadow: 3px 2px $text-color;
+  color: $text-third-color;
 
   @include laptop {
     font-size: 1.5rem;
@@ -27,6 +30,7 @@
   margin-top: 20px;
   margin-bottom: 20px;
   font-size: 1.5rem;
+  font-family: HelveticaNeueLTProBold;
 
   @include laptop {
     font-size: 1.2rem;
@@ -41,6 +45,7 @@
   text-align: center;
   margin-bottom: 30px;
   font-size: 1.2rem;
+  font-family: HelveticaNeueLTProBold;
 
   @include laptop {
     font-size: 1rem;
@@ -78,10 +83,10 @@
   margin-left: auto;
   border: 0;
   transition: .3s;
-  border: 3px solid black;
+  border: 3px solid $button-color;
   border-radius: 10px;
-  color: $text-third-color;
-  background-color: black;
+  color: $text-color;
+  background-color: $button-color;
 
   @include laptop {
     font-size: 1rem;
@@ -91,6 +96,18 @@
     cursor: pointer;
     transform: scale(1.04);
   }
+}
+
+.shareButtons {
+  max-height: 40px;
+  overflow: hidden;
+  transition: 1s;
+}
+
+.hidedShareButtons {
+  transition: 1s;
+  max-height: 0px;
+  overflow: hidden;
 }
 
 .redirect {

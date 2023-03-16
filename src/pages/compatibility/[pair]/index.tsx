@@ -2,7 +2,7 @@ import type { GetServerSidePropsContext } from 'next'
 import { Sign } from '@/components/Sign'
 import { Progressbar } from '@/components/Progressbar'
 import { InlineShareButtons } from 'sharethis-reactjs';
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
 import Head from 'next/head'
 import signs from '@/data/signs.json'
 import pairs from '@/data/zodiac-pairs.json'
@@ -14,6 +14,7 @@ import styles from '@/styles/Compatibility.module.scss'
 
 export default function Home({ firstSign, secondSign }:
   { firstSign: SignInterface, secondSign: SignInterface }) {
+  const [isShareButtonsVisible, setIsShareButtonsVisible] = useState(false)
 
   const pair = pairs.find(pair =>
     pair.possibleCombinations.includes(firstSign.name) &&
@@ -25,6 +26,8 @@ export default function Home({ firstSign, secondSign }:
       category: "Astro compatibility",
       action: "Share compatibility"
     })
+
+    setIsShareButtonsVisible(true)
   }, [])
 
   const handleStartOver = useCallback(() => {
@@ -65,30 +68,32 @@ export default function Home({ firstSign, secondSign }:
           <p className={styles.description}>{pair.description}</p>
         </section>
 
-        <InlineShareButtons
-          config={{
-            alignment: 'center',
-            color: 'social',
-            enabled: true,
-            font_size: 16,
-            labels: 'cta',
-            language: 'en',
-            networks: [
-              'pinterest',
-              'whatsapp',
-              'facebook',
-              'twitter'
-            ],
-            padding: 12,
-            radius: 4,          
-            show_total: false,
-            size: 40,
-            image: "https://bit.ly/2CMhCMC",
-            title: SHARE_DESCRIPTION,
-            message: SHARE_DESCRIPTION,
-            url: "https://zodiac-signs-compatibility.vercel.app/"
-          }}
-        />
+        <section className={isShareButtonsVisible ? styles.shareButtons : styles.hidedShareButtons}>
+          <InlineShareButtons
+            config={{
+              alignment: 'center',
+              color: 'social',
+              enabled: true,
+              font_size: 16,
+              labels: 'cta',
+              language: 'en',
+              networks: [
+                'pinterest',
+                'whatsapp',
+                'facebook',
+                'twitter'
+              ],
+              padding: 12,
+              radius: 4,
+              show_total: false,
+              size: 40,
+              image: "https://bit.ly/2CMhCMC",
+              title: SHARE_DESCRIPTION,
+              message: SHARE_DESCRIPTION,
+              url: "https://zodiac-signs-compatibility.vercel.app/"
+            }}
+          />
+        </section>
         <button className={styles.share} onClick={handleShare}>Share results✨</button>
         <Link href="/" className={styles.redirect} onClick={handleStartOver}>Start over</Link>
       </main>}

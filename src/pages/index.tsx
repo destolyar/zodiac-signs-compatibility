@@ -26,25 +26,9 @@ export default function Home() {
     ReactGA.event({
       category: "Astro compatibility",
       action: "Check compatibility button clicked"
-    })    
+    })
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [])
-
-  // useEffect(() => {
-  //   const urlParams = new URLSearchParams(window.location.search);
-  //   const first_sign = urlParams.get('first_sign')
-  //   const secondSign = urlParams.get('second_sign')
-
-  //   const firstSignIndex = signs.findIndex(sign => sign.name.toLowerCase() === first_sign?.toLowerCase())
-  //   const secondSignIndex = signs.findIndex(sign => sign.name.toLowerCase() === secondSign?.toLowerCase())
-  //   const bothSignsExists = firstSignIndex && secondSignIndex
-
-  //   if (bothSignsExists !== undefined) {
-  //     console.log("All should work")
-  //     setFirstSliderIndex(firstSignIndex)
-  //     setSecondSliderIndex(secondSignIndex)
-  //   }
-  // }, [])
 
   useEffect(() => {
     if (isLoaderVisible) {
@@ -71,12 +55,13 @@ export default function Home() {
         <meta name="viewport" content="min-width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1 className={styles.pageTitle}>Will it be a match 🌟?</h1>
+      <h1 className={styles.pageTitle}>Will it be a match?</h1>
       <main className={styles.container}>
         {isLoaderVisible ? <Loader /> : signs && <>
           <h2 className={styles.subtitle}>Check your zodiac compatibility</h2>
           <h3 className={styles.sliderTitle}>Your sign</h3>
           <Swiper
+            height={400}
             onSlideChange={(swiper) => setFirstSliderIndex(swiper.realIndex)}
             initialSlide={firstSliderIndex}
             slidesPerView={3}
@@ -95,6 +80,7 @@ export default function Home() {
           <h3 className={styles.sliderTitle}>Their sign</h3>
 
           <Swiper
+            height={400}
             onSlideChange={(swiper) => setSecondSliderIndex(swiper.realIndex)}
             initialSlide={secondSliderIndex}
             slidesPerView={3}
@@ -110,7 +96,7 @@ export default function Home() {
               </SwiperSlide>)}
           </Swiper>
 
-          <button className={styles.submit} onClick={handleSubmit}>Check your compatibility✨</button>
+          <button className={styles.submit} onClick={handleSubmit}>Check your compatibility</button>
 
           <p className={styles.description}>{DESCRIPTION_TEXT}</p>
         </>}

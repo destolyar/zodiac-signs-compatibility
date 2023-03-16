@@ -6,6 +6,7 @@ export const Loader = () => {
     <div className={styles.container}>
       <Image className={styles.image} src='/signs/horoscope.png' alt={"horoscope"} width={120} height={120} loading='lazy'/>
       <div className={styles.ldsDualRing}/>
+      <p></p>
     </div>
   )
 }

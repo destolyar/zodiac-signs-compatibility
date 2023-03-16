@@ -1,5 +1,17 @@
 @font-face {
   font-family: HelveticaNeueLTPro;
-  font-weight: bold;
+  font-weight: 400;
   src: url("../../fonts/HelveticaNeueLTPro-Roman.otf");
+}
+
+@font-face {
+  font-family: HelveticaNeueLTProBold;
+  font-weight: bold;
+  src: url("../../fonts/HelveticaNeueLTProBold.otf");
+}
+
+@font-face {
+  font-family: HelveticaNeueLTProBoldExtended;
+  font-weight: bold;
+  src: url("../../fonts/HelveticaNeueLTProBoldExtended.otf");
 }
