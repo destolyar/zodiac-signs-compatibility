@@ -1,27 +1,44 @@
-import type { GetServerSidePropsContext } from 'next'
 import { Sign } from '@/components/Sign'
 import { Progressbar } from '@/components/Progressbar'
 import { InlineShareButtons } from 'sharethis-reactjs';
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
+import { useRouter } from 'next/router';
 import Head from 'next/head'
+import compatibilityTitles from '@/data/compatibility-titles.json'
 import signs from '@/data/signs.json'
 import pairs from '@/data/zodiac-pairs.json'
 import ReactGA from 'react-ga';
 import Link from 'next/link'
-
 import styles from '@/styles/Compatibility.module.scss'
 
 
-export default function Home({ firstSign, secondSign }:
-  { firstSign: SignInterface, secondSign: SignInterface }) {
+export default function Home() {
   const [isShareButtonsVisible, setIsShareButtonsVisible] = useState(false)
-  const firstForCheck = `${firstSign.name}-${secondSign.name}`.toLowerCase()
-  const secondPairForCheck = `${secondSign.name}-${firstSign.name}`.toLowerCase()
+  const [firstSign, setFirstSign] = useState({} as SignInterface)
+  const [secondSign, setSecondSign] = useState({} as SignInterface)
 
-  const pair = pairs.find(pair =>
-    pair.possibleCombinations.split(" ").join("").toLowerCase() === firstForCheck ||
-    pair.possibleCombinations.split(" ").join("").toLowerCase() === secondPairForCheck
-  )
+  const router = useRouter()
+  const pair = router.query.pair as string
+
+  useEffect(() => {
+    if (!pair) {
+      return;
+    }
+
+    const splitedPair = pair.split("+")
+    const foundedFirstSign = signs.find(sign => sign.name === splitedPair[0])
+    const foundedSecondSign = signs.find(sign => sign.name === splitedPair[1])
+
+    const signsExists = foundedFirstSign && foundedSecondSign
+    if (!signsExists) {
+      router.push("/")
+      return;
+    }
+
+    setFirstSign(foundedFirstSign)
+    setSecondSign(foundedSecondSign)
+  }, [router.query.pair])
+
 
   const handleShare = useCallback(() => {
     ReactGA.event({
@@ -39,7 +56,20 @@ export default function Home({ firstSign, secondSign }:
     })
   }, [])
 
+  const getCompatibilityTitle = (compatibilityTitles: CompatibilityTitlesInterface[], currentPair: CurrentPairInterface) => {
+    return compatibilityTitles.find(title => title.score <= currentPair.overallscore)?.text || "A fair cosmical match!"
+  }
+
+  const firstForCheck = `${firstSign.name}-${secondSign.name}`.toLowerCase()
+  const secondPairForCheck = `${secondSign.name}-${firstSign.name}`.toLowerCase()
+
+  const findedPair = pairs.find(pair =>
+    pair.possibleCombinations.split(" ").join("").toLowerCase() === firstForCheck ||
+    pair.possibleCombinations.split(" ").join("").toLowerCase() === secondPairForCheck
+  )
+
   const SHARE_DESCRIPTION = "Check my zodiac compatibility results!"
+
 
   return (
     <>
@@ -47,27 +77,27 @@ export default function Home({ firstSign, secondSign }:
         <title>Compatibility result!</title>
       </Head>
       <h1 className={styles.pageTitle}>Is it a match?</h1>
-      {pair && <main className={styles.container}>
+      {findedPair && <main className={styles.container}>
         <section className={styles.signs}>
           <Sign signInfo={firstSign} />
           <span className={styles.plus}>+</span>
           <Sign signInfo={secondSign} />
         </section>
         <section>
-          <h2 className={styles.comment}>{pair.overallscore >= 70 ? "What an astounding match!" : "It's an ok match"}</h2>
-          <Progressbar isOverallScore percent={pair.overallscore} />
+          <h2 className={styles.comment}>{getCompatibilityTitle(compatibilityTitles, findedPair)}</h2>
+          <Progressbar isOverallScore percent={findedPair.overallscore} />
         </section>
 
         <section className={styles.secondaryScore}>
-          <Progressbar title={"Career"} percent={pair.careerscore} />
-          <Progressbar title={"Sex life"} percent={pair.intimatescore} />
-          <Progressbar title={"Mindset"} percent={pair.mindsetscore} />
-          <Progressbar title={"Friendship"} percent={pair.interestsscore} />
+          <Progressbar title={"Career"} percent={findedPair.careerscore} />
+          <Progressbar title={"Sex life"} percent={findedPair.intimatescore} />
+          <Progressbar title={"Mindset"} percent={findedPair.mindsetscore} />
+          <Progressbar title={"Friendship"} percent={findedPair.interestsscore} />
         </section>
 
         <section>
           <h2 className={styles.subtitle}>Overall</h2>
-          <p className={styles.description}>{pair.description}</p>
+          <p className={styles.description}>{findedPair.description}</p>
         </section>
 
         <section className={isShareButtonsVisible ? styles.shareButtons : styles.hidedShareButtons}>
@@ -103,34 +133,24 @@ export default function Home({ firstSign, secondSign }:
   )
 }
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const { res } = context
-  const pair = context.query.pair as string
-
-  const splitedPair = pair.split("+")
-  const firstSign = signs.find(sign => sign.name === splitedPair[0])
-  const secondSign = signs.find(sign => sign.name === splitedPair[1])
-
-  const signsExists = firstSign && secondSign
-  if (!signsExists) {
-    res.setHeader('location', '/')
-    res.statusCode = 302
-    res.end()
-
-    return { props: {} }
-  }
-
-
-  return {
-    props: {
-      firstSign: firstSign,
-      secondSign: secondSign
-    },
-  };
-}
-
 interface SignInterface {
   name: string,
   imagePath: string,
   dates: string
+}
+
+interface CurrentPairInterface {
+  possibleCombinations: string;
+  combinationid: number;
+  description: string;
+  overallscore: number;
+  careerscore: number;
+  intimatescore: number;
+  mindsetscore: number;
+  interestsscore: number;
+}
+
+interface CompatibilityTitlesInterface {
+  score: number,
+  text: string
 }
