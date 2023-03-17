@@ -8,13 +8,8 @@
 }
 
 .image {
-  width: 90px;
-  height: 90px;
-
-  @include phones {
-    width: 64px;
-    height: 64px;
-  }
+  width: 120px;
+  height: 120px;
 }
 
 .title {
@@ -35,7 +30,7 @@
 
 .dates {
   user-select: none;
-  font-size: 0.9rem;
+  font-size: 0.79rem;
   color: $text-color;
 
   @include laptop {

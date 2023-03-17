@@ -103,9 +103,20 @@
   @include laptop {
     font-size: 1rem;
   }
-  
+
   &:hover {
     cursor: pointer;
     transform: scale(1.04);
   }
+}
+
+.swiperContainer {
+  position: relative;
+}
+
+.leftBlur {
+  position: absolute;
+  width: 100px;
+  height: 100%;
+  z-index: 10;
 }

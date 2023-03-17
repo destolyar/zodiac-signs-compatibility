@@ -9,6 +9,7 @@ import ReactGA from 'react-ga';
 
 import styles from '@/styles/Home.module.scss'
 
+
 const LOADER_TIMEOUT = 3000;
 const DESCRIPTION_TEXT = 'Looking for the perfect match? Our zodiac partnership compatibility test uses the power of astrology to help you. Discover which zodiac signs are most compatible with yours. Whether you\'re looking for a romantic partner or just a new friend, our comparison provides valuable insights and advantages to help you make the most of your relationships.';
 
@@ -43,7 +44,13 @@ export default function Home() {
 
   const sliderBreakpoints = {
     1640: {
-      slidesPerView: 5
+      slidesPerView: 5.6
+    },
+    500: {
+      slidesPerView: 3.8
+    },
+    750: {
+      slidesPerView: 4.2
     }
   }
 
@@ -60,21 +67,33 @@ export default function Home() {
         {isLoaderVisible ? <Loader /> : signs && <>
           <h2 className={styles.subtitle}>Check your zodiac compatibility</h2>
           <h3 className={styles.sliderTitle}>Your sign</h3>
-          <Swiper
-            height={400}
-            onSlideChange={(swiper) => setFirstSliderIndex(swiper.realIndex)}
-            initialSlide={firstSliderIndex}
-            slidesPerView={3}
-            centeredSlides
-            spaceBetween={20}
-            loop
-            slideToClickedSlide
-            breakpoints={sliderBreakpoints}>
-            {signs.map(sign =>
-              <SwiperSlide key={sign.name}>
-                <Sign signInfo={sign} />
-              </SwiperSlide>)}
-          </Swiper>
+          <section className={styles.swiperContainer}>
+            <div className={styles.leftBlur}></div>
+            <Swiper
+              height={400}
+              onSlideChange={(swiper) => setFirstSliderIndex(swiper.realIndex)}
+              initialSlide={firstSliderIndex}
+              slidesPerView={3.6}
+              effect='coverflow'
+              coverflowEffect={{
+                rotate: 30,
+                slideShadows: false,
+                stretch: 0,
+                depth: 200,
+                modifier: 1,
+              }}
+              centeredSlides
+              spaceBetween={20}
+              loop
+              slideToClickedSlide
+              breakpoints={sliderBreakpoints}>
+              {signs.map(sign =>
+                <SwiperSlide key={sign.name}>
+                  <Sign signInfo={sign} />
+                </SwiperSlide>)}
+            </Swiper>
+            <div className={styles.rightBlur}></div>
+          </section>
 
           <span className={styles.plus}>+</span>
           <h3 className={styles.sliderTitle}>Their sign</h3>
@@ -83,7 +102,7 @@ export default function Home() {
             height={400}
             onSlideChange={(swiper) => setSecondSliderIndex(swiper.realIndex)}
             initialSlide={secondSliderIndex}
-            slidesPerView={3}
+            slidesPerView={3.6}
             centeredSlides
             spaceBetween={20}
             loop
