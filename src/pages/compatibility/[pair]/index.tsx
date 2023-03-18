@@ -110,7 +110,7 @@ export default function Home() {
               labels: 'cta',
               language: 'en',
               networks: [
-                'pinterest',
+                'reddit',
                 'whatsapp',
                 'facebook',
                 'twitter'

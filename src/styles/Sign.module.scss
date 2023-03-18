@@ -10,6 +10,11 @@
 .image {
   width: 120px;
   height: 120px;
+
+  @include tablets {
+    width: 100px;
+    height: 100px;
+  }
 }
 
 .title {
@@ -38,6 +43,6 @@
   }
 
   @include tablets {
-    font-size: 0.65rem;
+    font-size: 0.55rem;
   }
 }

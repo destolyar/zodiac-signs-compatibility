@@ -46,12 +46,6 @@ export default function Home() {
     1640: {
       slidesPerView: 5.6
     },
-    500: {
-      slidesPerView: 3.8
-    },
-    750: {
-      slidesPerView: 4.2
-    }
   }
 
   return (
@@ -73,7 +67,7 @@ export default function Home() {
               height={400}
               onSlideChange={(swiper) => setFirstSliderIndex(swiper.realIndex)}
               initialSlide={firstSliderIndex}
-              slidesPerView={3.6}
+              slidesPerView={4}
               effect='coverflow'
               coverflowEffect={{
                 rotate: 30,
@@ -102,7 +96,7 @@ export default function Home() {
             height={400}
             onSlideChange={(swiper) => setSecondSliderIndex(swiper.realIndex)}
             initialSlide={secondSliderIndex}
-            slidesPerView={3.6}
+            slidesPerView={4}
             centeredSlides
             spaceBetween={20}
             loop
