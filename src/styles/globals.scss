@@ -30,8 +30,6 @@ time, mark, audio, video {
 body {
   font-family: HelveticaNeueLTPro;
   margin: 0;
-  height: 100vh;
-  overflow-y: scroll;
 }
 
 a {
@@ -42,7 +40,7 @@ a {
 #__next {
   display: flex;
   flex-direction: column;
-  min-height: 100%;
+  min-height: 100vh;
   padding: 20px 80px;
   box-sizing: border-box;
   background-image: linear-gradient(#e0aca4,#6064cc);

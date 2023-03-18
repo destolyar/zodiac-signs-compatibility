@@ -39,14 +39,18 @@ export default function Home() {
     setSecondSign(foundedSecondSign)
   }, [router.query.pair])
 
-
   const handleShare = useCallback(() => {
     ReactGA.event({
       category: "Astro compatibility",
       action: "Share compatibility"
     })
 
-    setIsShareButtonsVisible(true)
+    window.scrollTo({ top: document.body.clientHeight, behavior: "smooth" })
+    const buttonsVisabilityTimeout = setTimeout(() => {
+      setIsShareButtonsVisible(true)
+    }, 400)
+
+    return () => clearTimeout(buttonsVisabilityTimeout)
   }, [])
 
   const handleStartOver = useCallback(() => {
@@ -77,7 +81,7 @@ export default function Home() {
         <title>Compatibility result!</title>
       </Head>
       <h1 className={styles.pageTitle}>Is it a match?</h1>
-      {findedPair && <main className={styles.container}>
+      {findedPair && <main className={isShareButtonsVisible ? styles.staticContainer : styles.container}>
         <section className={styles.signs}>
           <Sign signInfo={firstSign} />
           <span className={styles.plus}>+</span>
@@ -100,34 +104,37 @@ export default function Home() {
           <p className={styles.description}>{findedPair.description}</p>
         </section>
 
-        <section className={isShareButtonsVisible ? styles.shareButtons : styles.hidedShareButtons}>
-          <InlineShareButtons
-            config={{
-              alignment: 'center',
-              color: 'social',
-              enabled: true,
-              font_size: 16,
-              labels: 'cta',
-              language: 'en',
-              networks: [
-                'reddit',
-                'whatsapp',
-                'facebook',
-                'twitter'
-              ],
-              padding: 12,
-              radius: 4,
-              show_total: false,
-              size: 40,
-              image: "https://bit.ly/2CMhCMC",
-              title: SHARE_DESCRIPTION,
-              message: SHARE_DESCRIPTION,
-              url: "https://zodiac-signs-compatibility.vercel.app/"
-            }}
-          />
+        <section className={styles.shareButtonsContainer}>
+          <div className={isShareButtonsVisible ? styles.shareButtons : styles.hidedShareButtons}>
+            <InlineShareButtons
+              config={{
+                alignment: 'center',
+                color: 'social',
+                enabled: true,
+                font_size: 16,
+                labels: 'cta',
+                language: 'en',
+                networks: [
+                  'reddit',
+                  'whatsapp',
+                  'facebook',
+                  'twitter'
+                ],
+                padding: 12,
+                radius: 4,
+                show_total: false,
+                size: 40,
+                image: "https://bit.ly/2CMhCMC",
+                title: SHARE_DESCRIPTION,
+                message: SHARE_DESCRIPTION,
+                url: "https://zodiac-signs-compatibility.vercel.app/"
+              }}
+            />
+          </div>
         </section>
-        <button className={styles.share} onClick={handleShare}>Share results</button>
-        <Link href="/" className={styles.redirect} onClick={handleStartOver}>Start over</Link>
+        
+        <button className={isShareButtonsVisible ? styles.staticShare : styles.share} onClick={handleShare}>Share results</button>
+        <Link href="/" className={isShareButtonsVisible ? styles.staticRedirect : styles.redirect} onClick={handleStartOver}>Start over</Link>
       </main>}
     </>
   )
