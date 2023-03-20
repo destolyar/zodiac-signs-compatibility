@@ -17,6 +17,7 @@ export default function Home() {
   const [firstSliderIndex, setFirstSliderIndex] = useState(0);
   const [secondSliderIndex, setSecondSliderIndex] = useState(0);
   const [isLoaderVisible, setIsLoaderVisible] = useState(false)
+  const [initialMySign, setInitialMySign] = useState<number>()
 
   const currentPair = useMemo(() => `${signs[firstSliderIndex].name}+${signs[secondSliderIndex].name}`, [firstSliderIndex, secondSliderIndex])
 
@@ -41,6 +42,15 @@ export default function Home() {
     }
   }, [isLoaderVisible, router, currentPair])
 
+  useEffect(() => {
+    const my_sign = new URLSearchParams(window.location.search).get("my_sign");
+    if(my_sign) {
+      const prepickedSign = signs.findIndex(sign => sign.name.toLowerCase() === my_sign.toLowerCase())
+      setInitialMySign(prepickedSign)
+    } else {
+      setInitialMySign(0)
+    }
+  }, [])
 
   const sliderBreakpoints = {
     1640: {
@@ -63,10 +73,10 @@ export default function Home() {
           <h3 className={styles.sliderTitle}>Your sign</h3>
           <section className={styles.swiperContainer}>
             <div className={styles.leftBlur}></div>
-            <Swiper
+            {Number.isInteger(initialMySign) && <Swiper
               height={400}
               onSlideChange={(swiper) => setFirstSliderIndex(swiper.realIndex)}
-              initialSlide={firstSliderIndex}
+              initialSlide={initialMySign}
               slidesPerView={4}
               effect='coverflow'
               coverflowEffect={{
@@ -85,7 +95,7 @@ export default function Home() {
                 <SwiperSlide key={sign.name}>
                   <Sign signInfo={sign} />
                 </SwiperSlide>)}
-            </Swiper>
+            </Swiper>}
             <div className={styles.rightBlur}></div>
           </section>
 
