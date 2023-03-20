@@ -44,6 +44,8 @@ export default function Home() {
       category: "Astro compatibility",
       action: "Share compatibility"
     })
+
+    setIsShareButtonsVisible(true)
   }, [])
 
   const handleStartOver = useCallback(() => {
@@ -93,12 +95,7 @@ export default function Home() {
         </section>
 
         <button className={styles.share} onClick={handleShare}>Share results</button>
-
-        <section>
-          <h2 className={styles.subtitle}>Overall</h2>
-          <p className={styles.description}>{findedPair.description}</p>
-        </section>
-
+        
         <section className={styles.shareButtonsContainer}>
           <div className={isShareButtonsVisible ? styles.shareButtons : styles.hidedShareButtons}>
             <InlineShareButtons
@@ -127,7 +124,12 @@ export default function Home() {
             />
           </div>
         </section>
-        
+
+        <section>
+          <h2 className={styles.subtitle}>Overall</h2>
+          <p className={styles.description}>{findedPair.description}</p>
+        </section>
+
         <Link href="/" className={styles.redirect} onClick={handleStartOver}>Start over</Link>
       </main>}
     </>
