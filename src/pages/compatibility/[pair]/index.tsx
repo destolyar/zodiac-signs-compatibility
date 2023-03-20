@@ -44,13 +44,6 @@ export default function Home() {
       category: "Astro compatibility",
       action: "Share compatibility"
     })
-
-    window.scrollTo({ top: document.body.clientHeight, behavior: "smooth" })
-    const buttonsVisabilityTimeout = setTimeout(() => {
-      setIsShareButtonsVisible(true)
-    }, 400)
-
-    return () => clearTimeout(buttonsVisabilityTimeout)
   }, [])
 
   const handleStartOver = useCallback(() => {
@@ -81,7 +74,7 @@ export default function Home() {
         <title>Compatibility result!</title>
       </Head>
       <h1 className={styles.pageTitle}>Is it a match?</h1>
-      {findedPair && <main className={isShareButtonsVisible ? styles.staticContainer : styles.container}>
+      {findedPair && <main className={styles.container}>
         <section className={styles.signs}>
           <Sign signInfo={firstSign} />
           <span className={styles.plus}>+</span>
@@ -98,6 +91,8 @@ export default function Home() {
           <Progressbar title={"Mindset"} percent={findedPair.mindsetscore} />
           <Progressbar title={"Friendship"} percent={findedPair.interestsscore} />
         </section>
+
+        <button className={styles.share} onClick={handleShare}>Share results</button>
 
         <section>
           <h2 className={styles.subtitle}>Overall</h2>
@@ -133,8 +128,7 @@ export default function Home() {
           </div>
         </section>
         
-        <button className={isShareButtonsVisible ? styles.staticShare : styles.share} onClick={handleShare}>Share results</button>
-        <Link href="/" className={isShareButtonsVisible ? styles.staticRedirect : styles.redirect} onClick={handleStartOver}>Start over</Link>
+        <Link href="/" className={styles.redirect} onClick={handleStartOver}>Start over</Link>
       </main>}
     </>
   )
