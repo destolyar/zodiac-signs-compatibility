@@ -95,34 +95,32 @@ export default function Home() {
         </section>
 
         <button className={styles.share} onClick={handleShare}>Share results</button>
-        
-        <section className={styles.shareButtonsContainer}>
-          <div className={isShareButtonsVisible ? styles.shareButtons : styles.hidedShareButtons}>
-            <InlineShareButtons
-              config={{
-                alignment: 'center',
-                color: 'social',
-                enabled: true,
-                font_size: 16,
-                labels: 'cta',
-                language: 'en',
-                networks: [
-                  'reddit',
-                  'whatsapp',
-                  'facebook',
-                  'twitter'
-                ],
-                padding: 12,
-                radius: 4,
-                show_total: false,
-                size: 40,
-                image: "https://bit.ly/2CMhCMC",
-                title: SHARE_DESCRIPTION,
-                message: SHARE_DESCRIPTION,
-                url: "https://zodiac-signs-compatibility.vercel.app/"
-              }}
-            />
-          </div>
+
+        <section className={isShareButtonsVisible ? styles.shareButtons : styles.hidedShareButtons}>
+          <InlineShareButtons
+            config={{
+              alignment: 'center',
+              color: 'social',
+              enabled: true,
+              font_size: 16,
+              labels: 'cta',
+              language: 'en',
+              networks: [
+                'reddit',
+                'whatsapp',
+                'facebook',
+                'twitter'
+              ],
+              padding: 12,
+              radius: 4,
+              show_total: false,
+              size: 40,
+              image: "https://bit.ly/2CMhCMC",
+              title: SHARE_DESCRIPTION,
+              message: SHARE_DESCRIPTION,
+              url: "https://zodiac-signs-compatibility.vercel.app/"
+            }}
+          />
         </section>
 
         <section>
