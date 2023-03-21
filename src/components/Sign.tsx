@@ -5,7 +5,7 @@ export const Sign = ({ signInfo }: { signInfo: SignInfo }) => {
 
   return (
     <div className={styles.container}>
-      <img className={styles.image} src={imagePath} alt={name}/>
+      <img className={styles.image} src={"./" + imagePath} alt={name}/>
       <h3 className={styles.title}>{name}</h3>
       <p className={styles.dates}>{dates}</p>
     </div>

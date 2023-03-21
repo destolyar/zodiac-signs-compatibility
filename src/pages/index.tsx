@@ -13,6 +13,7 @@ import styles from '@/styles/Home.module.scss'
 const LOADER_TIMEOUT = 3000;
 const DESCRIPTION_TEXT = 'Looking for the perfect match? Our zodiac partnership compatibility test uses the power of astrology to help you. Discover which zodiac signs are most compatible with yours. Whether you\'re looking for a romantic partner or just a new friend, our comparison provides valuable insights and advantages to help you make the most of your relationships.';
 
+
 export default function Home() {
   const [firstSliderIndex, setFirstSliderIndex] = useState(0);
   const [secondSliderIndex, setSecondSliderIndex] = useState(0);
@@ -64,7 +65,7 @@ export default function Home() {
         <title>Zodiac queer compatibility calculator</title>
         <meta name="description" content="Zodiac queer compatibility calculator" />
         <meta name="viewport" content="min-width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="./favicon.ico" />
       </Head>
       <h1 className={styles.pageTitle}>Will it be a match?</h1>
       <main className={styles.container}>
