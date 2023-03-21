@@ -128,7 +128,7 @@ export default function Home() {
           <p className={styles.description}>{findedPair.description}</p>
         </section>
 
-        <Link href={`/zodiac-compatibility/?my_sign=${firstSign.name}`} className={styles.redirect} onClick={handleStartOver}>Start over</Link>
+        <Link href={`/?my_sign=${firstSign.name}`} className={styles.redirect} onClick={handleStartOver}>Start over</Link>
       </main>}
     </>
   )
