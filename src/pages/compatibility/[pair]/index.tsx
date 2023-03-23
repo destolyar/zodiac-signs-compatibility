@@ -118,7 +118,8 @@ export default function Home() {
               image: "https://bit.ly/2CMhCMC",
               title: SHARE_DESCRIPTION,
               message: SHARE_DESCRIPTION,
-              url: "https://zodiac-signs-compatibility.vercel.app/"
+              // change vercel share link to weareher link with signs
+              url: `https://weareher.com/compatibility/${pair}`
             }}
           />
         </section>
