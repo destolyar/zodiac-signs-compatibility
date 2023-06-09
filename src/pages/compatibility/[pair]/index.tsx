@@ -10,6 +10,8 @@ import pairs from '@/data/zodiac-pairs.json'
 import ReactGA from 'react-ga';
 import Link from 'next/link'
 import styles from '@/styles/Compatibility.module.scss'
+import Image from "next/image"
+import logo from "../../../../public/logoher.svg"
 
 
 export default function Home() {
@@ -75,6 +77,11 @@ export default function Home() {
       <Head>
         <title>Compatibility result!</title>
       </Head>
+      <div className="her-branding">
+        <a href="/">
+          <Image width={94} height={93} className="her-branding__logo" src={logo} alt="We are HER"/>
+        </a>
+      </div>
       <h1 className={styles.pageTitle}>Is it a match?</h1>
       {findedPair && <main className={styles.container}>
         <section className={styles.signs}>

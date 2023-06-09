@@ -17,8 +17,8 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
 	margin: 0;
@@ -41,19 +41,25 @@ a {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  padding: 20px 80px;
+  padding: 0 80px 20px;
   box-sizing: border-box;
   background-image: linear-gradient(#e0aca4,#6064cc);
+  position: relative;
 
   @include laptop {
-    padding: 20px 60px;
+    padding: 0 60px 20px;
   }
 
   @include tablets {
-    padding: 20px 40px;
+    padding: 0 40px 20px;
   }
 
   @include phones {
-    padding: 20px;
+    padding: 0 20px 20px;
   }
+}
+
+.her-branding {
+  position: absolute;
+  inset: 0;
 }

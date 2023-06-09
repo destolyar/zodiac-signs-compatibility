@@ -6,7 +6,8 @@ import { Loader } from '@/components/Loader'
 import signs from '@/data/signs.json'
 import Head from 'next/head'
 import ReactGA from 'react-ga';
-
+import Image from "next/image"
+import logo from "../../public/logoher.svg"
 import styles from '@/styles/Home.module.scss'
 
 
@@ -67,6 +68,11 @@ export default function Home() {
         <meta name="viewport" content="min-width=device-width, initial-scale=1" />
         <link rel="icon" href="./favicon.ico" />
       </Head>
+      <div className="her-branding">
+        <a href="/">
+          <Image width={94} height={93} className="her-branding__logo" src={logo} alt="We are HER"/>
+        </a>
+      </div>
       <h1 className={styles.pageTitle}>Will it be a match?</h1>
       <main className={styles.container}>
         {isLoaderVisible ? <Loader /> : signs && <>

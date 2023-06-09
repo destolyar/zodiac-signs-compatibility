@@ -20,9 +20,16 @@
   font-family: HelveticaNeueLTProBoldExtended;
   text-shadow: 3px 2px $text-color;
   color: $text-third-color;
+  margin-top: 8rem;
 
   @include laptop {
     font-size: 1.5rem;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+  }
+
+  @include phones {
+    font-size: 1rem;
   }
 }
 

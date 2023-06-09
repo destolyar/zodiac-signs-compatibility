@@ -23,9 +23,15 @@
   font-family: HelveticaNeueLTProBoldExtended;
   text-shadow: 3px 2px $text-color;
   color: $text-third-color;
+  margin-top: 8rem;
 
   @include laptop {
     font-size: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  @include phones {
+    font-size: 1rem;
   }
 }
 
@@ -37,6 +43,10 @@
 
   @include laptop {
     font-size: 1.2rem;
+  }
+
+  @include phones {
+    font-size: 0.8rem;
   }
 }
 
