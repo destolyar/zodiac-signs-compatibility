@@ -40,7 +40,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ## Deploy on WP
 
 1. Build your project with `npm run export`
-2. Copy content from `/compatibility/[page].html` to `template-compatibility.php` after php tag is closed.
-3. Add favicon `<link rel="shortcut icon" href="/zodiac-compatibility/favicon.ico" type="image/x-icon">` to the head section in the `template-compatibility.php`
+2. Copy content from `out` folder to `zodiac-compatibility` folder to the root folder of the website.
+3. Copy `_next`, `fonts`, `signs` folders from `out` to the root folder of the website.
 4. Copy `template-compatibility.php` to your current theme on WP, or to theme's templates folder
 5. Open `functions.php` of your theme and copy the code from `rewrite-rule.php` to the bottom of `functions.php`

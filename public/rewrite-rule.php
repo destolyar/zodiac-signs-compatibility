@@ -11,5 +11,7 @@ function wsk_zodiac_rewrite()
     $query_vars[] = 'pair';
     return $query_vars;
   });
+
+  flush_rewrite_rules();
 }
 add_action('init', 'wsk_zodiac_rewrite');

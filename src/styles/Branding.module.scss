@@ -1,0 +1,14 @@
+.herBranding {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.herBrandingLogo {
+  display: block;
+
+  @include phones {
+    max-width: 75px;
+    height: auto;
+  }
+}
