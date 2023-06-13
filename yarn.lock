@@ -276,11 +276,6 @@
   dependencies:
     "loose-envify" "^1.1.0"
 
-"sharethis-reactjs@^1.6.0":
-  "integrity" "sha512-cYrf9OgStwfOjPrHhk/0SpFuJNFQQU6OY7pWlhWtu3smuF+rYNF+vOL4aM/pwaP1QGwwrEuHTAqfpG3OWXPIag=="
-  "resolved" "https://registry.npmjs.org/sharethis-reactjs/-/sharethis-reactjs-1.6.0.tgz"
-  "version" "1.6.0"
-
 "source-map-js@^1.0.2", "source-map-js@>=0.6.2 <2.0.0":
   "integrity" "sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw=="
   "resolved" "https://registry.npmjs.org/source-map-js/-/source-map-js-1.0.2.tgz"

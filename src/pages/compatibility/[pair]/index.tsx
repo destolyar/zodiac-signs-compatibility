@@ -1,6 +1,5 @@
 import { Sign } from '@/components/Sign'
 import { Progressbar } from '@/components/Progressbar'
-import { InlineShareButtons } from 'sharethis-reactjs';
 import { useCallback, useEffect, useState } from 'react'
 import { useRouter } from 'next/router';
 import Head from 'next/head'
@@ -70,13 +69,14 @@ export default function Home() {
     pair.possibleCombinations.split(" ").join("").toLowerCase() === secondPairForCheck
   )
 
-  const SHARE_DESCRIPTION = "Check my zodiac compatibility results!"
+  // const SHARE_DESCRIPTION = "Check my zodiac compatibility results!"
 
 
   return (
     <>
       <Head>
         <title>Compatibility result!</title>
+        <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=6477cf175380390019972091&product=sop'></script>
       </Head>
       <div className={branding.herBranding}>
         <a href="/">
@@ -105,31 +105,7 @@ export default function Home() {
         <button className={styles.share} onClick={handleShare}>Share results</button>
 
         <section className={isShareButtonsVisible ? styles.shareButtons : styles.hidedShareButtons}>
-          <InlineShareButtons
-            config={{
-              alignment: 'center',
-              color: 'social',
-              enabled: true,
-              font_size: 16,
-              labels: 'cta',
-              language: 'en',
-              networks: [
-                'reddit',
-                'whatsapp',
-                'facebook',
-                'twitter'
-              ],
-              padding: 12,
-              radius: 4,
-              show_total: false,
-              size: 40,
-              image: "https://bit.ly/2CMhCMC",
-              title: SHARE_DESCRIPTION,
-              message: SHARE_DESCRIPTION,
-              // change vercel share link to weareher link with signs
-              url: `https://weareher.com/compatibility/${pair}`
-            }}
-          />
+          <div className="sharethis-inline-share-buttons"></div>
         </section>
 
         <section>
