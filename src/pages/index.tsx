@@ -5,16 +5,13 @@ import { useRouter } from 'next/router'
 import { Loader } from '@/components/Loader'
 import signs from '@/data/signs.json'
 import Head from 'next/head'
-import ReactGA from 'react-ga';
 import Image from "next/image"
 import logo from "../../public/logoher.svg"
 import styles from '@/styles/Home.module.scss'
 import branding from '@/styles/Branding.module.scss'
 
-
 const LOADER_TIMEOUT = 3000;
 const DESCRIPTION_TEXT = 'Looking for the perfect match? Our zodiac partnership compatibility test uses the power of astrology to help you. Discover which zodiac signs are most compatible with yours. Whether you\'re looking for a romantic partner or just a new friend, our comparison provides valuable insights and advantages to help you make the most of your relationships.';
-
 
 export default function Home() {
   const [firstSliderIndex, setFirstSliderIndex] = useState(0);
@@ -28,11 +25,8 @@ export default function Home() {
 
   const handleSubmit = useCallback(() => {
     setIsLoaderVisible(true)
-    ReactGA.event({
-      category: "Astro compatibility",
-      action: "Check compatibility button clicked"
-    })
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.dataLayer.push({ 'event': 'button_clicked_check_compatibility', 'zodiac_signs': `${currentPair}` })
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [])
 
   useEffect(() => {
@@ -68,6 +62,7 @@ export default function Home() {
         <meta name="description" content="Zodiac queer compatibility calculator" />
         <meta name="viewport" content="min-width=device-width, initial-scale=1" />
         <link rel="icon" href="./favicon.ico" />
+
       </Head>
       <div className={branding.herBranding}>
         <a href="/">

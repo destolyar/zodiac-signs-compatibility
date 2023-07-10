@@ -6,13 +6,11 @@ import Head from 'next/head'
 import compatibilityTitles from '@/data/compatibility-titles.json'
 import signs from '@/data/signs.json'
 import pairs from '@/data/zodiac-pairs.json'
-import ReactGA from 'react-ga';
 import Link from 'next/link'
 import styles from '@/styles/Compatibility.module.scss'
 import branding from '@/styles/Branding.module.scss'
 import Image from "next/image"
 import logo from "../../../../public/logoher.svg"
-
 
 export default function Home() {
   const [isShareButtonsVisible, setIsShareButtonsVisible] = useState(false)
@@ -42,19 +40,11 @@ export default function Home() {
   }, [router.query.pair])
 
   const handleShare = useCallback(() => {
-    ReactGA.event({
-      category: "Astro compatibility",
-      action: "Share compatibility"
-    })
-
     setIsShareButtonsVisible(true)
   }, [])
 
   const handleStartOver = useCallback(() => {
-    ReactGA.event({
-      category: "Astro compatibility",
-      action: "Try astro compatibility button clicked"
-    })
+    window.dataLayer.push({ 'event': 'button_clicked_start_over', 'zodiac_signs': `${pair}` })
   }, [])
 
   const getCompatibilityTitle = (compatibilityTitles: CompatibilityTitlesInterface[], currentPair: CurrentPairInterface) => {
@@ -76,7 +66,7 @@ export default function Home() {
     <>
       <Head>
         <title>Compatibility result!</title>
-        <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=6477cf175380390019972091&product=sop'></script>
+        <meta name="zodiac-pair" content={pair}/>
       </Head>
       <div className={branding.herBranding}>
         <a href="/">

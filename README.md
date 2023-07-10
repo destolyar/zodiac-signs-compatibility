@@ -44,3 +44,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 3. Copy `_next`, `fonts`, `signs` folders from `out` to the root folder of the website.
 4. Copy `template-compatibility.php` to your current theme on WP, or to theme's templates folder
 5. Open `functions.php` of your theme and copy the code from `rewrite-rule.php` to the bottom of `functions.php`
+6. Add GTM directly to the files `index.html`and `template-compatibility.php`
