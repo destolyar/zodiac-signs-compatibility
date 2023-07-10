@@ -94,10 +94,6 @@ export default function Home() {
 
         <button className={styles.share} onClick={handleShare}>Share results</button>
 
-        <section className={isShareButtonsVisible ? styles.shareButtons : styles.hidedShareButtons}>
-          <div className="sharethis-inline-share-buttons"></div>
-        </section>
-
         <section>
           <h2 className={styles.subtitle}>Overall</h2>
           <p className={styles.description}>{findedPair.description}</p>
