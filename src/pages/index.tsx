@@ -25,6 +25,7 @@ export default function Home() {
 
   const handleSubmit = useCallback(() => {
     setIsLoaderVisible(true)
+    window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({ 'event': 'button_clicked_check_compatibility', 'zodiac_signs': `${currentPair}` })
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [])

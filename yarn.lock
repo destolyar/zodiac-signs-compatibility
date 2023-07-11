@@ -41,6 +41,11 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-gtm-module@^2.0.1":
+  "integrity" "sha512-T/DN9gAbCYk5wJ1nxf4pSwmXz4d1iVjM++OoG+mwMfz9STMAotGjSb65gJHOS5bPvl6vLSsJnuC+y/43OQrltg=="
+  "resolved" "https://registry.npmjs.org/@types/react-gtm-module/-/react-gtm-module-2.0.1.tgz"
+  "version" "2.0.1"
+
 "@types/react@*", "@types/react@18.0.28":
   "integrity" "sha512-RD0ivG1kEztNBdoAK7lekI9M+azSnitIn85h4iOiaLjaTrMjzslhaqCGaI4IyCJ1RljWiLCEu4jyrLLgqxBTew=="
   "resolved" "https://registry.npmjs.org/@types/react/-/react-18.0.28.tgz"
@@ -236,6 +241,11 @@
     "loose-envify" "^1.1.0"
     "scheduler" "^0.23.0"
 
+"react-gtm-module@^2.0.11":
+  "integrity" "sha512-8gyj4TTxeP7eEyc2QKawEuQoAZdjKvMY4pgWfycGmqGByhs17fR+zEBs0JUDq4US/l+vbTl+6zvUIx27iDo/Vw=="
+  "resolved" "https://registry.npmjs.org/react-gtm-module/-/react-gtm-module-2.0.11.tgz"
+  "version" "2.0.11"
+
 "react-is@^16.13.1":
   "integrity" "sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ=="
   "resolved" "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz"
@@ -270,6 +280,11 @@
   "version" "0.23.0"
   dependencies:
     "loose-envify" "^1.1.0"
+
+"sharethis-reactjs@^1.6.0":
+  "integrity" "sha512-cYrf9OgStwfOjPrHhk/0SpFuJNFQQU6OY7pWlhWtu3smuF+rYNF+vOL4aM/pwaP1QGwwrEuHTAqfpG3OWXPIag=="
+  "resolved" "https://registry.npmjs.org/sharethis-reactjs/-/sharethis-reactjs-1.6.0.tgz"
+  "version" "1.6.0"
 
 "source-map-js@^1.0.2", "source-map-js@>=0.6.2 <2.0.0":
   "integrity" "sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw=="
